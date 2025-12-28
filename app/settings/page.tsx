@@ -3,12 +3,15 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import SettingsClient from "./SettingsClient"
 
-export default async function SettingsPage() {
-  const session = await auth()
+export const dynamic = 'force-dynamic'
 
-  if (!session?.user) {
-    redirect("/api/auth/signin")
-  }
+export default async function SettingsPage() {
+  // Temporarily disable auth
+  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+
+  // if (!session?.user) {
+  //   redirect("/api/auth/signin")
+  // }
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },

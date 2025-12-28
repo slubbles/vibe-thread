@@ -3,12 +3,15 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import HistoryClient from "./HistoryClient"
 
-export default async function HistoryPage() {
-  const session = await auth()
+export const dynamic = 'force-dynamic'
 
-  if (!session?.user) {
-    redirect("/api/auth/signin")
-  }
+export default async function HistoryPage() {
+  // Temporarily disable auth
+  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+
+  // if (!session?.user) {
+  //   redirect("/api/auth/signin")
+  // }
 
   // Get user's thread history
   const threads = await prisma.thread.findMany({

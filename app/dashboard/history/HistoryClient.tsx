@@ -36,24 +36,24 @@ export default function HistoryClient({ threads }: { threads: Thread[] }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-black">
+    <div className="min-h-screen bg-[#070708]">
       {/* Navigation */}
-      <nav className="border-b border-zinc-200 dark:border-zinc-800">
+      <nav className="border-b border-[#1d1d20]">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <Link href="/dashboard" className="text-2xl font-bold text-zinc-900 dark:text-white">
+            <Link href="/dashboard" className="text-2xl font-bold text-white">
               VibeThread
             </Link>
-            <Link href="/dashboard" className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition">
+            <Link href="/dashboard" className="text-sm text-[#6f717b] hover:text-white transition">
               Generate
             </Link>
-            <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+            <span className="text-sm font-medium text-[#5de4c7]">
               History
             </span>
           </div>
           <button
             onClick={() => signOut()}
-            className="px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm text-zinc-700 dark:text-zinc-300"
+            className="px-4 py-2 rounded-xl border border-[#1d1d20] hover:bg-[#171719] transition text-sm text-white"
           >
             Sign Out
           </button>
@@ -62,10 +62,10 @@ export default function HistoryClient({ threads }: { threads: Thread[] }) {
 
       <main className="max-w-6xl mx-auto px-4 py-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Thread History
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className="text-[#6f717b]">
             View and copy your previously generated threads
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function HistoryClient({ threads }: { threads: Thread[] }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search threads..."
-            className="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 rounded-xl border border-[#1d1d20] bg-[#171719] text-white placeholder-[#6f717b] focus:ring-2 focus:ring-[#5de4c7] focus:border-transparent"
           />
         </div>
 
@@ -85,16 +85,16 @@ export default function HistoryClient({ threads }: { threads: Thread[] }) {
         {filteredThreads.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-2">
+            <h3 className="text-xl font-medium text-white mb-2">
               {search ? "No threads found" : "No threads yet"}
             </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+            <p className="text-[#6f717b] mb-6">
               {search ? "Try a different search term" : "Generate your first thread to see it here"}
             </p>
             {!search && (
               <Link
                 href="/dashboard"
-                className="inline-block px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+                className="inline-block px-6 py-3 rounded-xl bg-white text-black font-medium hover:bg-[#f0f0f0] transition"
               >
                 Generate Thread
               </Link>
@@ -105,25 +105,25 @@ export default function HistoryClient({ threads }: { threads: Thread[] }) {
             {filteredThreads.map((thread) => (
               <div
                 key={thread.id}
-                className="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 hover:border-zinc-300 dark:hover:border-zinc-700 transition"
+                className="bg-[#171719] rounded-xl border border-[#1d1d20] p-6 hover:border-[#2a2a2d] transition"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
-                    <div className="text-xs text-zinc-500 dark:text-zinc-500 mb-2">
+                    <div className="text-xs text-[#6f717b] mb-2">
                       {formatDate(thread.createdAt)}
                     </div>
-                    <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 line-clamp-2">
+                    <div className="text-sm text-[#6f717b] mb-3 line-clamp-2">
                       {thread.input}
                     </div>
                   </div>
                   <button
                     onClick={() => copyThread(thread.id, thread.output)}
-                    className="ml-4 px-3 py-1 text-sm rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition text-zinc-700 dark:text-zinc-300"
+                    className="ml-4 px-3 py-1 text-sm rounded-xl bg-[#202022] hover:bg-[#2a2a2d] transition text-white"
                   >
                     {copied === thread.id ? "Copied! ✓" : "Copy"}
                   </button>
                 </div>
-                <div className="text-sm text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap bg-zinc-50 dark:bg-zinc-800/50 rounded-lg p-4">
+                <div className="text-sm text-white whitespace-pre-wrap bg-[#0f0f10] rounded-xl p-4">
                   {thread.output}
                 </div>
               </div>

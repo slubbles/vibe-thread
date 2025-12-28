@@ -3,12 +3,15 @@ import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import DashboardClient from "./DashboardClient"
 
-export default async function DashboardPage() {
-  const session = await auth()
+export const dynamic = 'force-dynamic'
 
-  if (!session?.user) {
-    redirect("/api/auth/signin")
-  }
+export default async function DashboardPage() {
+  // Temporarily disable auth
+  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+
+  // if (!session?.user) {
+  //   redirect("/api/auth/signin")
+  // }
 
   // Get or create user usage limit
   const now = new Date()

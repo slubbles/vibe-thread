@@ -70,28 +70,28 @@ export default function DashboardClient({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-black">
+    <div className="min-h-screen bg-[#070708]">
       {/* Navigation */}
-      <nav className="border-b border-zinc-200 dark:border-zinc-800">
+      <nav className="border-b border-[#1d1d20]">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <div className="text-2xl font-bold text-zinc-900 dark:text-white">
+            <div className="text-2xl font-bold text-white">
               VibeThread
             </div>
-            <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+            <span className="text-sm font-medium text-[#5de4c7]">
               Generate
             </span>
-            <a href="/dashboard/history" className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition">
+            <a href="/dashboard/history" className="text-sm text-[#6f717b] hover:text-white transition">
               History
             </a>
-            <a href="/settings" className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition">
+            <a href="/settings" className="text-sm text-[#6f717b] hover:text-white transition">
               Settings
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="text-sm text-[#6f717b]">
               {isPro ? (
-                <span className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">
+                <span className="px-3 py-1 rounded-xl bg-[#5de4c7] text-black font-medium">
                   Pro
                 </span>
               ) : (
@@ -102,7 +102,7 @@ export default function DashboardClient({
             </div>
             <button
               onClick={() => signOut()}
-              className="px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm text-zinc-700 dark:text-zinc-300"
+              className="px-4 py-2 rounded-xl border border-[#1d1d20] hover:bg-[#171719] transition text-sm text-white"
             >
               Sign Out
             </button>
@@ -112,19 +112,19 @@ export default function DashboardClient({
 
       <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Welcome back, {user.name || "there"} 👋
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className="text-[#6f717b]">
             Paste your daily notes below and turn them into an authentic X thread.
           </p>
         </div>
 
         {!isPro && usageCount >= 4 && (
-          <div className="mb-6 p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800">
-            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+          <div className="mb-6 p-4 rounded-xl bg-[#171719] border border-[#1d1d20]">
+            <p className="text-sm text-white">
               ⚠️ You have {5 - usageCount} generation{5 - usageCount === 1 ? '' : 's'} left. 
-              <a href="/upgrade" className="font-semibold underline ml-1">Upgrade to Pro</a> for unlimited threads at $9/mo.
+              <a href="/upgrade" className="font-medium underline ml-1 text-[#5de4c7]">Upgrade to Pro</a> for unlimited threads at $9/mo.
             </p>
           </div>
         )}
@@ -133,14 +133,14 @@ export default function DashboardClient({
           {/* Input Section */}
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-white mb-2">
                 Your Notes
               </label>
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="fixed bug today, still no users, kinda tired&#10;spent 5hrs on auth&#10;idk if anyone will use this"
-                className="w-full h-64 px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full h-64 px-4 py-3 rounded-xl border border-[#1d1d20] bg-[#171719] text-white placeholder-[#6f717b] focus:ring-2 focus:ring-[#5de4c7] focus:border-transparent resize-none"
                 disabled={loading}
               />
             </div>
@@ -148,14 +148,14 @@ export default function DashboardClient({
             <button
               onClick={generateThread}
               disabled={loading || (!isPro && usageCount >= 5)}
-              className="w-full px-6 py-4 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 disabled:bg-zinc-300 dark:disabled:bg-zinc-700 disabled:cursor-not-allowed transition text-lg"
+              className="w-full px-6 py-4 rounded-xl bg-white text-black font-medium hover:bg-[#f0f0f0] disabled:bg-[#1d1d20] disabled:text-[#6f717b] disabled:cursor-not-allowed transition text-lg"
             >
               {loading ? "Generating..." : "Generate Thread ✨"}
             </button>
 
             {error && (
-              <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
-                <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+              <div className="p-4 rounded-xl bg-[#171719] border border-[#1d1d20]">
+                <p className="text-sm text-white">{error}</p>
               </div>
             )}
           </div>
@@ -163,36 +163,36 @@ export default function DashboardClient({
           {/* Output Section */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="block text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="block text-sm font-medium text-white">
                 Your Thread
               </label>
               {thread && (
                 <button
                   onClick={copyToClipboard}
-                  className="text-sm px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition text-zinc-700 dark:text-zinc-300"
+                  className="text-sm px-3 py-1 rounded-xl bg-[#171719] hover:bg-[#202022] transition text-white"
                 >
                   {copied ? "Copied! ✓" : "Copy All"}
                 </button>
               )}
             </div>
 
-            <div className="h-64 px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-y-auto">
+            <div className="h-64 px-4 py-3 rounded-xl border border-[#1d1d20] bg-[#171719] overflow-y-auto">
               {!thread && !loading && (
-                <p className="text-zinc-400 dark:text-zinc-600 italic">
+                <p className="text-[#6f717b] italic">
                   Your thread will appear here...
                 </p>
               )}
 
               {loading && (
                 <div className="flex items-center justify-center h-full">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#5de4c7]"></div>
                 </div>
               )}
 
               {thread && (
                 <div className="space-y-4">
                   {thread.tweets.map((tweet, i) => (
-                    <div key={i} className="text-zinc-800 dark:text-zinc-200">
+                    <div key={i} className="text-white">
                       {tweet}
                     </div>
                   ))}
@@ -201,7 +201,7 @@ export default function DashboardClient({
             </div>
 
             {thread && (
-              <p className="text-xs text-zinc-500 dark:text-zinc-500">
+              <p className="text-xs text-[#6f717b]">
                 💡 Copy and paste each tweet to X (Twitter) to post your thread!
               </p>
             )}
@@ -209,11 +209,11 @@ export default function DashboardClient({
         </div>
 
         {/* Tips Section */}
-        <div className="mt-12 p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-          <h3 className="font-semibold text-zinc-900 dark:text-white mb-3">
+        <div className="mt-12 p-6 rounded-xl bg-[#171719] border border-[#1d1d20]">
+          <h3 className="font-medium text-white mb-3">
             💡 Tips for better threads:
           </h3>
-          <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <ul className="space-y-2 text-sm text-[#6f717b]">
             <li>• Write like you're texting a friend — casual, short, real</li>
             <li>• Include specific details (time spent, what you built, how you feel)</li>
             <li>• Don't worry about perfect grammar — raw vibes work best</li>
