@@ -1,16 +1,16 @@
 import { PrismaClient } from '@prisma/client'
-import { PrismaLibSql } from '@prisma/adapter-libsql'
-import { createClient } from '@libsql/client'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { Pool } from 'pg'
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
-const libsql = createClient({
-  url: 'file:./prisma/dev.db',
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
 })
 
-const adapter = new PrismaLibSql(libsql as any)
+const adapter = new PrismaPg(pool)
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({
   adapter,
