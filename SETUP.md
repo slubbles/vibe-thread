@@ -19,8 +19,8 @@ Auth is currently **disabled** to allow the app to build. Here's what you need t
 2. Click **"New OAuth App"**
 3. Fill in:
    - **Application name**: `VibeThread` (or your choice)
-   - **Homepage URL**: `https://your-domain.vercel.app` (your Vercel URL)
-   - **Authorization callback URL**: `https://your-domain.vercel.app/api/auth/callback/github`
+   - **Homepage URL**: `https://vibe-thread-rho.vercel.app` (your Vercel URL)
+   - **Authorization callback URL**: `https://vibe-thread-rho.vercel.app/api/auth/callback/github`
 4. Click **"Register application"**
 5. Copy the **Client ID**
 6. Generate a **Client Secret** and copy it
