@@ -1,17 +1,17 @@
 import { redirect } from "next/navigation"
-import { auth } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import SettingsClient from "./SettingsClient"
 
 export const dynamic = 'force-dynamic'
 
 export default async function SettingsPage() {
-  // Temporarily disable auth
-  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+  const session = await getServerSession(authOptions)
 
-  // if (!session?.user) {
-  //   redirect("/api/auth/signin")
-  // }
+  if (!session?.user) {
+    redirect("/api/auth/signin")
+  }
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },

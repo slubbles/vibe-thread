@@ -1,17 +1,17 @@
 import { redirect } from "next/navigation"
-import { auth } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import HistoryClient from "./HistoryClient"
 
 export const dynamic = 'force-dynamic'
 
 export default async function HistoryPage() {
-  // Temporarily disable auth
-  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+  const session = await getServerSession(authOptions)
 
-  // if (!session?.user) {
-  //   redirect("/api/auth/signin")
-  // }
+  if (!session?.user) {
+    redirect("/api/auth/signin")
+  }
 
   // Get user's thread history
   const threads = await prisma.thread.findMany({

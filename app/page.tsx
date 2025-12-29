@@ -1,9 +1,9 @@
 import Link from "next/link"
-// import { auth } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 
 export default async function Home() {
-  // const session = await auth()
-  const session = null // Temporarily disabled until auth is fixed
+  const session = await getServerSession(authOptions)
 
   return (
     <div className="min-h-screen bg-[#070708]">

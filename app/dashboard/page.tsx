@@ -1,17 +1,17 @@
 import { redirect } from "next/navigation"
-import { auth } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import DashboardClient from "./DashboardClient"
 
 export const dynamic = 'force-dynamic'
 
 export default async function DashboardPage() {
-  // Temporarily disable auth
-  const session = { user: { id: 'temp-user', email: 'demo@example.com' } }
+  const session = await getServerSession(authOptions)
 
-  // if (!session?.user) {
-  //   redirect("/api/auth/signin")
-  // }
+  if (!session?.user) {
+    redirect("/api/auth/signin")
+  }
 
   // Get or create user usage limit
   const now = new Date()

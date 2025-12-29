@@ -1,8 +1,8 @@
-import NextAuth from "next-auth"
+import type { NextAuthOptions } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 
-export const config = {
+export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET || 'development-secret-change-in-production',
   providers: [
     GitHub({
@@ -15,7 +15,7 @@ export const config = {
     }),
   ],
   callbacks: {
-    session: async ({ session, token }: any) => {
+    session: async ({ session, token }) => {
       if (session?.user && token?.sub) {
         session.user.id = token.sub
       }
@@ -23,5 +23,3 @@ export const config = {
     },
   },
 }
-
-export const { handlers, signIn, signOut, auth } = NextAuth(config)

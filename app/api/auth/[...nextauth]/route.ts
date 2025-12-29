@@ -1,16 +1,6 @@
-// import { handlers } from "@/lib/auth"
+import NextAuth from "next-auth"
+import { authOptions } from "@/lib/auth"
 
-// Auth temporarily disabled
-export const GET = async () => {
-  return new Response(JSON.stringify({ error: "Auth disabled" }), {
-    status: 503,
-    headers: { "Content-Type": "application/json" }
-  })
-}
+const handler = NextAuth(authOptions)
 
-export const POST = async () => {
-  return new Response(JSON.stringify({ error: "Auth disabled" }), {
-    status: 503,
-    headers: { "Content-Type": "application/json" }
-  })
-}
+export { handler as GET, handler as POST }
