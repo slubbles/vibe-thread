@@ -6,25 +6,31 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
 
   return (
-    <div className="min-h-screen bg-[#070708]">
+    <div className="min-h-screen bg-[#0F131A]">
       {/* Navigation */}
-      <nav className="border-b border-[#1d1d20]">
+      <nav className="border-b border-[#2B333F]">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-xl font-medium text-white">
+          <div className="text-xl font-semibold text-white">
             VibeThread
           </div>
-          <div>
+          <div className="flex gap-4 items-center">
+            <Link
+              href="/pricing"
+              className="px-4 py-2 text-white hover:text-[#CED1D7] transition-colors text-sm font-medium"
+            >
+              Pricing
+            </Link>
             {session ? (
               <Link
                 href="/dashboard"
-                className="px-4 py-2 rounded-lg bg-white text-black hover:bg-[#d7d7db] transition-all text-sm font-medium"
+                className="px-6 py-2.5 rounded-full bg-[#7A12D4] text-white hover:bg-[#6A0FC4] transition-all text-sm font-semibold"
               >
                 Dashboard
               </Link>
             ) : (
               <Link
                 href="/signin"
-                className="px-4 py-2 rounded-lg bg-white text-black hover:bg-[#d7d7db] transition-all text-sm font-medium"
+                className="px-6 py-2.5 rounded-full bg-[#7A12D4] text-white hover:bg-[#6A0FC4] transition-all text-sm font-semibold"
               >
                 Sign In
               </Link>
@@ -36,29 +42,39 @@ export default async function Home() {
       {/* Hero Section */}
       <main className="max-w-6xl mx-auto px-4 py-24">
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-medium tracking-tight text-white mb-6 leading-tight">
-            Turn messy notes into <span className="text-[#5de4c7]">authentic</span> X threads
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+            Turn messy notes into <span className="text-[#7A12D4]">authentic</span> X threads
           </h1>
-          <p className="text-lg text-[#6f717b] mb-8 leading-relaxed">
+          <p className="text-lg text-[#CED1D7] mb-8 leading-relaxed">
             Stop spending 30 minutes writing threads. Paste your daily dev notes, 
             get a natural-sounding thread in seconds. Built for indie devs doing #BuildInPublic.
           </p>
           
-          {session ? (
-            <Link
-              href="/dashboard"
-              className="inline-block px-6 py-3 text-sm font-medium rounded-xl bg-white text-black hover:bg-[#d7d7db] transition-all"
-            >
-              Open App →
-            </Link>
-          ) : (
-            <Link
-              href="/signin"
-              className="inline-block px-6 py-3 text-sm font-medium rounded-xl bg-white text-black hover:bg-[#d7d7db] transition-all"
-            >
-              Get Started Free →
-            </Link>
-          )}
+          <div className="flex gap-4 justify-center items-center">
+            {session ? (
+              <Link
+                href="/dashboard"
+                className="inline-block px-8 py-3.5 text-sm font-semibold rounded-full bg-[#7A12D4] text-white hover:bg-[#6A0FC4] transition-all"
+              >
+                Open App →
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/signin"
+                  className="inline-block px-8 py-3.5 text-sm font-semibold rounded-full bg-[#7A12D4] text-white hover:bg-[#6A0FC4] transition-all"
+                >
+                  Get Started Free →
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="inline-block px-8 py-3.5 text-sm font-semibold rounded-full bg-white/10 text-white hover:bg-white/20 transition-all"
+                >
+                  View Pricing
+                </Link>
+              </>
+            )}
+          </div>
           
           <p className="mt-4 text-sm text-[#6f717b]">
             5 threads/month free • No credit card required
